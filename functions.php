@@ -30,16 +30,6 @@ add_action('after_setup_theme', 'cancel_theme_support');
 require_once 'sbr-widget/sbr_widget.php';
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// SBR-Styles einbinden
-// enqueue styles for child theme
-// @ https://digwp.com/2016/01/include-styles-child-theme/
-function sbr_styles()
-{
-    wp_enqueue_style('blocksy', get_template_directory_uri() . '/style.css');
-}
-add_action('wp_enqueue_scripts', 'sbr_styles');
-
-//////////////////////////////////////////////////////////////////////////////////////////
 // Copyright-Block Widget
 function copyright_shortcode () {
 $copyright = date_i18n ('Y')."<br>".get_option('blogname')."<br>"
