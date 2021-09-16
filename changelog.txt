@@ -9,5 +9,5 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
-Version 0.9.5.1
+Version 0.9.6
 1. Beta-Version
