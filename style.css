@@ -5,8 +5,8 @@ Description:        SBR-Theme für Websites der SBR-Gremien Post Postbank Teleko
 Author:             Hans M. Herbrand
 Author URI:         https://herbrand.org
 Template:           blocksy
-Version:            0.9.6.1
-Date:               2021-09-17
+Version:            0.9.6.2
+Date:               2021-09-25
 License:            GNU General Public License v2 or later
 License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 Tags:               Block Editor Styles, Blog, BuddyPress, Custom Colors, Custom Logo, Custom Menu,
@@ -18,3 +18,156 @@ Text Domain:        blocksy
 Credits:            Creative Themes, https://creativethemes.com/blocksy/
 GitHub Theme URI:   https://github.com/m266/sbr-theme-2
 */
+
+/* Gästebucheinträge zentrieren */
+.ct-comments-container {
+    padding: 2ch;
+}
+
+/* Alle Links magenta */
+a, h1, h2, h3, h4, h5, h6 {
+    color: #a1015b;
+}
+
+/* Offcanvas-Menü */
+.ct-panel-content {
+    background-color: #fff !important;
+}
+
+/* Tabellen */
+td, th {
+    border: 1px solid #999;
+    padding: .25rem;
+    text-align: left;
+    background-color: #fff;
+}
+
+/* Footer-Widget */
+.ct-widget {
+    border-color: gray;
+    border-width: 1px;
+    padding: 20px;
+    min-height: 350px;
+    background: #fafbfc;
+}
+
+/* Widget-Titel */
+.widget-title {
+    font-size: 25px !important;
+}
+
+/* Button To Top Abstand */
+.ct-back-to-top {
+    margin-bottom: 60px;
+}
+
+/* Bellows Navigation */
+/* Schrift fett; Rand oben 0px */
+.widget .bellows {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* Buttonfarbe Hauptseiten */
+.bellows.bellows-skin-vanilla .bellows-nav .bellows-item-level-0.bellows-current-menu-item > .bellows-target, .bellows.bellows-skin-vanilla .bellows-nav .bellows-item-level-0.bellows-current-menu-ancestor > .bellows-target {
+    background-color: #a1015b !important;
+    color: white;
+}
+
+/* Buttonfarbe Unterseiten */
+.bellows.bellows-skin-vanilla .bellows-nav .bellows-submenu .bellows-current-menu-item > .bellows-target, .bellows.bellows-skin-vanilla .bellows-nav .bellows-submenu .bellows-current-menu-ancestor > .bellows-target {
+    background-color: #a1015b !important;
+    color: white;
+}
+
+/* Textfarbe akt. Button */
+.widget-content .bellows-nav .bellows-current-menu-item > .bellows-target {
+    color: white;
+}
+
+/* Buttonhöhe */
+.bellows .bellows-nav .bellows-custom-content.bellows-custom-content-padded, .bellows .bellows-nav .bellows-target, .bellows .bellows-nav .bellows-target.bellows-target-w-image > .bellows-image.bellows-image-padded, .bellows .bellows-nav .bellows-target.bellows-target-w-image > .bellows-target-text {
+    padding: 10px;
+    padding-right: 10px;
+}
+
+/* Schrift Site-Beschreibung */
+.site-description {
+    font-size: 25px !important;
+    color: #000;
+}
+
+/* Anpassung Handy */
+/*@media only screen and (max-width: 480px) { */
+@media screen and (max-width: 768px) {
+    .ct-container {
+        font-size: 15px;
+        width: 97%;
+        overflow: auto;
+        margin: 5px;
+    }
+    /* Tabellen */
+    td, th {
+        border: 1px solid #999;
+        padding: .25rem;
+        text-align: left;
+        background-color: #fff;
+        font-size: 10px;
+        overflow: auto !important;
+    }
+    /* Beitrag Handy */
+    .ct-container-narrow {
+        margin-right: 0 !important;
+        background-color: #fff;
+        padding: 20px;
+    }
+    /* Schrift Site-Beschreibung */
+    .site-description {
+        font-size: 15px !important;
+    }
+    /* Titelbild Rand links */
+    .title-image-page-home {
+        margin-left: -5px !important;
+    }
+}
+
+/* Button runde Ecken */
+.button, .submit, .ct-button, .added_to_cart, [type='submit'], .ct-button-ghost, .wp-block-button__link, .wp-block-file .wp-block-file__button, .forminator-design--none .forminator-button {
+    border-radius: 10px;
+}
+
+/* Aufzählungszeichen */
+.entry-content ul {
+    list-style-image: url(/wp-content/themes/sbr-theme-2/images/pfeil-rechts.png);
+}
+
+/* Farbe Seitentitel */
+.site-title-container a {
+    color: #000;
+}
+
+/* Button Hintergrund */
+.button {
+    background-color: #a1015b !important;
+}
+
+/* Gästebuch Felder, Checkbox */
+textarea#comment, input#author, input#email {
+    border-color: #1e73be;
+    border-width: 1px;
+    border-style: solid !important;
+}
+.privacyBox {
+    border-color: #1e73be !important;
+}
+
+/* Alle Bilder */
+/* Rand */
+.alignnone {
+    margin: 15px;
+}
+
+/* Author aus Beiträgen ausblenden */
+.meta-author {
+    display: none !important;
+}
