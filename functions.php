@@ -92,7 +92,7 @@ if (is_plugin_inactive('wp-h-happyforms-tools/wphhft.php')) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// Verbesserung Bestätigungs-E-Mail (Block der Zustimmung wird ausgeblendet)
+// Verbesserung Bestätigungs-E-Mail von Happyforms (Block der Zustimmung wird ausgeblendet)
 // Der Inhalt der Variable "$label" muss exakt dem Text im Formular entsprechen; bei Bedarf in Zeile 196 anpassen.
 add_filter('happyforms_email_part_visible', function ($visible, $part, $form) {
     $label = 'Das Formular kann nur mit der Zustimmung zur Datenschutzerklärung gesendet werden*';
@@ -105,7 +105,7 @@ add_filter('happyforms_email_part_visible', function ($visible, $part, $form) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 /*
-Feld "Nachricht" wird mit Kommentar-Blacklist abgeglichen
+Feld "Nachricht" von Happyforms wird mit Kommentar-Blacklist abgeglichen
 Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
  */
 add_filter('happyforms_validate_submission', function ($is_valid, $request, $form) {
@@ -139,6 +139,17 @@ add_filter('happyforms_validate_submission', function ($is_valid, $request, $for
 
     return $is_valid;
 }, 10, 3);
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/*
+Happyforms-Formulare exportieren
+Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
+*/
+add_filter( 'happyforms_happyform_post_type_args', function( $args ) {
+    $args['can_export'] = true;
+
+    return $args;
+} );
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Beiträge in Seiten einfügen
