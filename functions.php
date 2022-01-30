@@ -20,10 +20,6 @@ function cancel_theme_support()
 add_action('after_setup_theme', 'cancel_theme_support');
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// SBR-Widget einbinden
-require_once 'sbr-widget/sbr_widget.php';
-
-//////////////////////////////////////////////////////////////////////////////////////////
 // Copyright-Block Widget
 function copyright_shortcode () {
 $copyright = date_i18n ('Y')."<br>".get_option('blogname')."<br>"
