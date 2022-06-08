@@ -5,8 +5,8 @@ Description:        SBR-Theme für Websites der SBR-Gremien Post Postbank Teleko
 Author:             Hans M. Herbrand
 Author URI:         https://herbrand.org
 Template:           blocksy
-Version:            0.9.7.5
-Date:               2022-03-25
+Version:            1.0
+Date:               2022-06-08
 License:            GNU General Public License v2 or later
 License URI:        http://www.gnu.org/licenses/gpl-2.0.html
 Tags:               Block Editor Styles, Blog, BuddyPress, Custom Colors, Custom Logo, Custom Menu,
@@ -175,7 +175,10 @@ textarea#comment, input#author, input#email {
 }
 
 /* Bilder in Galerie nebeneinander */
-.gallery .gallery-item {
-	float: left;
-	padding: 10px;
+.gallery-item {
+float: left;
+padding: 10px;
+}
+.gallery {
+overflow: hidden;
 }
