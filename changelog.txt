@@ -9,6 +9,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
+Version 1.1
+1. Anpassung für Link zur Datenschutzerklärung beim Plugin "Happyforms"
+
 Version 1.o
 1. CSS für Gallery verbessert
 2. Feld URL im Gästebuch ausgeblendet

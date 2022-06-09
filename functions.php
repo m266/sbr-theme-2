@@ -63,29 +63,32 @@ function rkv_cblm_replace_blacklist_sources($list)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// Erlaubt HTML-Code für Happyforms in Mehrfachauswahl-Feldern
-if (!function_exists('is_plugin_active')) {
-    require_once ABSPATH . '/wp-admin/includes/plugin.php';
-}
-// Ist Plugin WP H-Happyforms inaktiv? Dann folgenden Code ausfuehren
-if (is_plugin_inactive('wp-h-happyforms-tools/wphhft.php')) {
-// Ist Plugin Happyforms aktiv?
-    if (is_plugin_active('happyforms/happyforms.php')) { // Plugin Happyforms ist aktiv
-// Ersetzt String in der Datei frontend-checkbox.php Zeile 34 (Plugin Happyforms)
-        $wphhft_string_orig = "<?php echo esc_attr( \$option['label'] ); ?>";
-        $wphhft_string_new = "<?php echo html_entity_decode( \$option['label'] ); ?>";
-        $wphhft_path_to_file = ABSPATH . 'wp-content/plugins/happyforms/core/templates/parts/frontend-checkbox.php';
-        $wphhft_file_contents = file_get_contents($wphhft_path_to_file); // Inhalt frontend-checkbox.php einlesen
-        if (strpos($wphhft_file_contents, $wphhft_string_orig) !== false) { // Original-String vorhanden?
-            $wphhft_file_contents = str_replace($wphhft_string_orig, $wphhft_string_new, $wphhft_file_contents);
-            file_put_contents($wphhft_path_to_file, $wphhft_file_contents); // Replace strings
-            add_filter('happyforms_part_frontend_template_path_checkbox', function ($wphhft_template) {
-                $wphhft_template = ABSPATH . 'wp-content/plugins/happyforms/core/templates/parts/frontend-checkbox.php';
-                return $wphhft_template;
-            });
-        }
+/* Erlaubt Links in Mehrfachauswahl-Feldern von Happyforms
+Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
+*/
+add_shortcode( 'happyforms_link', function( $atts, $content = '' ) {
+    $atts = shortcode_atts( array( 'href' => '#' ), $atts );
+    $atts['href'] = str_replace( '&quot;', '', $atts['href'] );
+    $link = "<a href=\"{$atts['href']}\" target=\"_blank\">{$content}</a>";
+
+    return $link;
+}, 10, 2 );
+
+add_action( 'happyforms_part_before', function( $part ) {
+    if ( 'checkbox' !== $part['type'] ) {
+        return;
     }
-}
+
+    ob_start();
+} );
+
+add_action( 'happyforms_part_after', function( $part ) {
+    if ( 'checkbox' !== $part['type'] ) {
+        return;
+    }
+
+    echo do_shortcode( ob_get_clean() );
+} );
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Verbesserung Bestätigungs-E-Mail von Happyforms (Block der Zustimmung wird ausgeblendet)
