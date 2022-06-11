@@ -193,3 +193,10 @@ function wpiec_shortcode($atts = array(), $content = null)
     return $content;
 }
 add_shortcode('wpiec', 'wpiec_shortcode');
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/*
+Google-Fonts in MailPoet deaktivieren
+Credits: https://kb.mailpoet.com/article/332-how-to-disable-google-fonts
+*/
+add_filter('mailpoet_display_custom_fonts', function () {return false;});
