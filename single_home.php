@@ -8,7 +8,7 @@
  */
 
 //get_header();
-require_once 'header_home.php';
+require_once 'header.php';
 
 
 if (

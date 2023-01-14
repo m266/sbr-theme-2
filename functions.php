@@ -1,7 +1,15 @@
 <?php
+/*
+Anpassungen für SBR-Theme 2
+Stand: 27.12.2022
+*/
+
 if (!defined('WP_DEBUG')) {
     die('Direct access forbidden.');
 }
+
+// Check, ob Plugins aktiv sind
+require_once 'check_plugins_active.php';
 
 // Child-Theme style.css nach dem Parent-Theme style.css laden
 function sbr_enqueue_styles() {
@@ -10,7 +18,6 @@ wp_enqueue_style( 'child-main', get_stylesheet_directory_uri
 }
 add_action( 'wp_enqueue_scripts', 'sbr_enqueue_styles',999);
 
-// Anpassungen fuer SBR-Websites
 //////////////////////////////////////////////////////////////////////////////////////////
 // Restoring the classic Widgets Editor
 function cancel_theme_support()
@@ -51,104 +58,6 @@ if (!function_exists('remove_query_strings')) { // Prüfung, ob Funktion bereits
     }
     add_action('init', 'remove_query_strings');
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//Eigene Blacklist von GitHub einfuegen
-add_filter('cblm_sources', 'rkv_cblm_replace_blacklist_sources');
-function rkv_cblm_replace_blacklist_sources($list)
-{
-    return array(
-        'https://raw.githubusercontent.com/m266/wordpress-comment-blacklist/master/blacklist.txt'
-    );
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-/* Erlaubt Links in Mehrfachauswahl-Feldern von Happyforms
-Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
-*/
-add_shortcode( 'happyforms_link', function( $atts, $content = '' ) {
-    $atts = shortcode_atts( array( 'href' => '#' ), $atts );
-    $atts['href'] = str_replace( '&quot;', '', $atts['href'] );
-    $link = "<a href=\"{$atts['href']}\" target=\"_blank\">{$content}</a>";
-
-    return $link;
-}, 10, 2 );
-
-add_action( 'happyforms_part_before', function( $part ) {
-    if ( 'checkbox' !== $part['type'] ) {
-        return;
-    }
-
-    ob_start();
-} );
-
-add_action( 'happyforms_part_after', function( $part ) {
-    if ( 'checkbox' !== $part['type'] ) {
-        return;
-    }
-
-    echo do_shortcode( ob_get_clean() );
-} );
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// Verbesserung Bestätigungs-E-Mail von Happyforms (Block der Zustimmung wird ausgeblendet)
-// Der Inhalt der Variable "$label" muss exakt dem Text im Formular entsprechen; bei Bedarf in Zeile 196 anpassen.
-add_filter('happyforms_email_part_visible', function ($visible, $part, $form) {
-    $label = 'Das Formular kann nur mit der Zustimmung zur Datenschutzerklärung gesendet werden*';
-    if (isset($part['label']) && $label === $part['label']) {
-        $visible = false;
-    }
-
-    return $visible;
-}, 10, 3);
-
-//////////////////////////////////////////////////////////////////////////////////////////
-/*
-Feld "Nachricht" von Happyforms wird mit Kommentar-Blacklist abgeglichen
-Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
- */
-add_filter('happyforms_validate_submission', function ($is_valid, $request, $form) {
-    $mod_keys = trim(get_option('disallowed_keys'));
-
-    if ('' === $mod_keys) {
-        return $is_valid;
-    }
-
-    foreach ($form['parts'] as $part) {
-        if ($part['type'] === 'multi_line_text') {
-            $part_name = happyforms_get_part_name($part, $form);
-            $part_value = $request[$part_name];
-
-            foreach (explode("\n", $mod_keys) as $word) {
-                $word = trim($word);
-                $length = strlen($word);
-
-                if ($length < 2 or 256 < $length) {
-                    continue;
-                }
-
-                $pattern = sprintf('#%s#i', preg_quote($word, '#'));
-
-                if (preg_match($pattern, $part_value)) {
-                    $is_valid = false;
-                }
-            }
-        }
-    }
-
-    return $is_valid;
-}, 10, 3);
-
-//////////////////////////////////////////////////////////////////////////////////////////
-/*
-Happyforms-Formulare exportieren
-Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
-*/
-add_filter( 'happyforms_happyform_post_type_args', function( $args ) {
-    $args['can_export'] = true;
-
-    return $args;
-} );
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Beiträge in Seiten einfügen
@@ -200,3 +109,5 @@ Google-Fonts in MailPoet deaktivieren
 Credits: https://kb.mailpoet.com/article/332-how-to-disable-google-fonts
 */
 add_filter('mailpoet_display_custom_fonts', function () {return false;});
+
+//////////////////////////////////////////////////////////////////////////////////////////

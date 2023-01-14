@@ -1,6 +1,6 @@
 === SBR-Theme 2 ===
 Requires at least: 4.0
-Tested up to: 6.0
+Tested up to: 6.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -9,6 +9,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
+Version 1.2
+1. header.php vom Parent Theme neu kopiert und in single_home.php inkludiert
+2. header_home.php gelöscht
+3. header_image.php eingefügt und in header.php inkludiert
+4. check_plugins_active.php eingefügt und in functions.php inkludiert
+5. Integrierte Plugin-Funktionen entfernt
+6. Check, ob notwendige Plugins aktiv sind
+
 Version 1.1.1
 1. Google-Fonts in MailPoet deaktiviert
 
