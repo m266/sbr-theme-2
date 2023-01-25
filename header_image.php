@@ -1,7 +1,7 @@
 <?php
-/* Headerbild für die Startseite
+/* Headerbild fÃ¼r die Startseite
  * Eigenes Headerbild in die Mediathek hochladen
- * Bildlink im Format "/wp-content/..." als Wert im Benutzerdefiniertes Feld eingefügen
+ * Bildlink im Format "/wp-content/..." als Wert im Benutzerdefiniertes Feld eingefÃ¼gen
  * Ohne Eingabe eines Wertes wird das Standardbild dargestellt
  */
 $sbr_headerbild = get_post_meta($post->ID, 'headerbild', true);

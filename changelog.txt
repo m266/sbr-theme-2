@@ -9,6 +9,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
+Version 1.2.1
+1. header_image.php gespeichert im Format UTF-8 (ohne BOM)
+
 Version 1.2
 1. header.php vom Parent Theme neu kopiert und in single_home.php inkludiert
 2. header_home.php gelöscht
