@@ -1,7 +1,7 @@
 <?php
 /*
 Anpassungen für SBR-Theme 2
-Stand: 27.12.2022
+Stand: 02.03.2023
 */
 
 if (!defined('WP_DEBUG')) {
@@ -60,11 +60,13 @@ if (!function_exists('remove_query_strings')) { // Prüfung, ob Funktion bereits
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-// Beiträge in Seiten einfügen
-// Quelle: https://ostrich.de/wordpress-beitraege-auf-seite-anzeigen/
-// Version 1.0
-// 09.03.2021
-// Tag [posts] in der Start-Seite einfügen
+/*
+Beiträge in Seiten einfügen
+Quelle: https://ostrich.de/wordpress-beitraege-auf-seite-anzeigen/
+Version 1.0
+09.03.2021
+Tag [posts] in der Start-Seite einfügen
+*/
 function shortcode_posts_function()
 {
     //Parameter für Posts
@@ -94,8 +96,8 @@ add_shortcode('posts', 'shortcode_posts_function');
 
 //////////////////////////////////////////////////////////////////////////////////////////
 /* Externe HTML-Seite einfügen
- * Shortcode [wpiec]URL[/wpiec] in Seite/Beitrag einfügen
- */
+Shortcode [wpiec]URL[/wpiec] in Seite/Beitrag einfügen
+*/
 function wpiec_shortcode($atts = array(), $content = null)
 {
     $content = file_get_contents($content);
@@ -110,4 +112,7 @@ Credits: https://kb.mailpoet.com/article/332-how-to-disable-google-fonts
 */
 add_filter('mailpoet_display_custom_fonts', function () {return false;});
 
+//////////////////////////////////////////////////////////////////////////////////////////
+// Meldung Object Cache ausblenden
+add_filter('site_status_should_suggest_persistent_object_cache', '__return_false');
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -9,6 +9,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
+Version 1.3
+1. Plugin Statify entfernt
+2. Plugin Koko Analytics installiert
+3. Meldung Object Cache in functions.php ausgeblendet
+
 Version 1.2.1
 1. header_image.php gespeichert im Format UTF-8 (ohne BOM)
 
