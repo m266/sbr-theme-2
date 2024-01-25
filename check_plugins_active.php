@@ -1,19 +1,16 @@
 <?php
 /*
-Stand: 27.12.2022
-Check, ob Plugins aktiv sind
+Stand: 25.01.2024
+Check, ob Plugins aktiv/inaktiv sind
 */
-// Plugin "WP H-Happyforms Tools" inaktiv?
-if (!function_exists('is_plugin_inactive')) {
+// Plugin "WP H-Happyforms Tools" aktiv?
+if (!function_exists('is_plugin_active')) {
 require_once ABSPATH . '/wp-admin/includes/plugin.php';
 }
-// Plugin "Happyforms" inaktiv?
-if (is_plugin_active('happyforms/happyforms.php')) { 
-if (is_plugin_inactive('wp-h-happyforms-tools/wphhft.php')) {
+if (is_plugin_active('wp-h-happyforms-tools/wphhft.php')) {
 function wphhft_notice() { ?>
 <div class="notice notice-error">
-<p><?php _e('Bitte das Plugin <a href="https://herbrand.org/wordpress/eigene-plugins/wp-h-happyforms-tools/" target="_blank">
-        <b>"WP H-Happyforms Tools"</b></a> herunterladen, installieren und aktivieren!');?></p>
+<p><?php _e('Bitte das Plugin <b>"WP H-Happyforms Tools"</b></a> deaktivieren und l&ouml;schen!');?></p>
 
 </div>
 <?php
@@ -23,6 +20,5 @@ function(){
 add_action( 'admin_notices', 'wphhft_notice' );
 }
 );
-}
 }
 ?>

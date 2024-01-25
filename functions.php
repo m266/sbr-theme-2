@@ -1,7 +1,7 @@
 <?php
 /*
 Anpassungen für SBR-Theme 2
-Stand: 02.03.2023
+Stand: 25.01.2024
 */
 
 if (!defined('WP_DEBUG')) {
@@ -116,3 +116,33 @@ add_filter('mailpoet_display_custom_fonts', function () {return false;});
 // Meldung Object Cache ausblenden
 add_filter('site_status_should_suggest_persistent_object_cache', '__return_false');
 //////////////////////////////////////////////////////////////////////////////////////////
+/* Erlaubt Links in Mehrfachauswahl-Feldern von Happyforms
+Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
+Stand: 25.01.2024
+*/
+// Plugin Happyforms oder Happyforms-Upgrade (Premium-Version) aktiv?
+if (is_plugin_active('happyforms/happyforms.php') || (is_plugin_active('happyforms-upgrade/happyforms-upgrade.php'))) {
+add_shortcode( 'happyforms_link', function( $atts, $content = '' ) {
+    $atts = shortcode_atts( array( 'href' => '#' ), $atts );
+    $atts['href'] = str_replace( '&quot;', '', $atts['href'] );
+    $link = "<a href=\"{$atts['href']}\" target=\"_blank\">{$content}</a>";
+
+    return $link;
+}, 10, 2 );
+
+add_action( 'happyforms_part_before', function( $part ) {
+    if ( 'checkbox' !== $part['type'] ) {
+        return;
+    }
+
+    ob_start();
+} );
+
+add_action( 'happyforms_part_after', function( $part ) {
+    if ( 'checkbox' !== $part['type'] ) {
+        return;
+    }
+
+    echo do_shortcode( ob_get_clean() );
+} );
+}
