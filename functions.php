@@ -1,7 +1,7 @@
 <?php
 /*
 Anpassungen für SBR-Theme 2
-Stand: 25.01.2024
+Stand: 03.02.2024
 */
 
 if (!defined('WP_DEBUG')) {
@@ -118,7 +118,7 @@ add_filter('site_status_should_suggest_persistent_object_cache', '__return_false
 //////////////////////////////////////////////////////////////////////////////////////////
 /* Erlaubt Links in Mehrfachauswahl-Feldern von Happyforms
 Credits/Special thanks: Ignazio Setti https://thethemefoundry.com/
-Stand: 25.01.2024
+Stand: 03.02.2024
 */
 // Plugin Happyforms oder Happyforms-Upgrade (Premium-Version) aktiv?
 if (is_plugin_active('happyforms/happyforms.php') || (is_plugin_active('happyforms-upgrade/happyforms-upgrade.php'))) {
@@ -145,4 +145,14 @@ add_action( 'happyforms_part_after', function( $part ) {
 
     echo do_shortcode( ob_get_clean() );
 } );
+// Verbesserung Bestätigungs-E-Mail (Block der Zustimmung wird ausgeblendet)
+// Der Inhalt der Variable "$label" muss exakt dem Text im Formular entsprechen; bei Bedarf anpassen.
+add_filter( 'happyforms_email_part_visible', function( $visible, $part, $form ) {
+    $label = 'Das Formular kann nur mit der Zustimmung zur Datenschutzerklärung gesendet werden*';
+    if ( isset( $part['label'] ) && $label === $part['label'] ) {
+        $visible = false;
+    }
+
+    return $visible;
+}, 10, 3 );
 }

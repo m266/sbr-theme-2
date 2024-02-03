@@ -1,6 +1,6 @@
 === SBR-Theme 2 ===
 Requires at least: 4.0
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -9,6 +9,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 SBR-Theme für Websites der SBR-Gremien Post Postbank Telekom
 
 == Changelog ==
+Version 1.5
+1. Code für Zustimmung zur DSGVO: Verbesserung Bestätigungs-E-Mail
+
 Version 1.4
 1. Plugin WP H-Happyforms Tools entfernt
 2. Code für Zustimmung zur DSGVO (Happyforms) in functions.php
